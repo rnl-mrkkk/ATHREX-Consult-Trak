@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Availability | CONSULT-TRAK</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/dashboard.css">
+    <link rel="stylesheet" href="../../css/faculty.css">
+</head>
+<body data-role="faculty">
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-user">
+                <div class="user-info">
+                    <div class="role">Faculty Member</div>
+                    <div class="dept">Computer Science</div>
+                </div>
+                <button class="notification-bell" aria-label="Notifications">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                    <span class="badge">3</span>
+                </button>
+                <div class="theme-toggle" onclick="toggleTheme()">
+                    <span class="label" id="themeLabel">Light</span>
+                    <div class="switch"><div class="knob"></div></div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <a href="dashboard.html" class="sidebar-brand">
+                <span class="brand-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 4v16M3 10h18"/></svg></span>
+                <h1 class="brand-name">CONSULT-TRAK</h1>
+            </a>
+            <div class="sidebar-user-card">
+                <div class="sidebar-user-avatar">FM</div>
+                <div class="sidebar-user-info">
+                    <span class="sidebar-user-name">Faculty Member</span>
+                    <span class="sidebar-user-dept">Faculty</span>
+                </div>
+                <svg class="sidebar-user-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item" data-page="dashboard">
+                    <span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11 12 3l9 8"/><path d="M5 10v11h14V10"/></svg></span>
+                    <span class="nav-label">Dashboard</span>
+                </a>
+                <a href="consultation-requests.html" class="nav-item" data-page="consultation-requests">
+                    <span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg></span>
+                    <span class="nav-label">Consultation Requests</span>
+                </a>
+                <a href="availability.html" class="nav-item" data-page="availability">
+                    <span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/></svg></span>
+                    <span class="nav-label">Availability</span>
+                </a>
+                <a href="consultation-records.html" class="nav-item" data-page="consultation-records">
+                    <span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg></span>
+                    <span class="nav-label">Consultation Records</span>
+                </a>
+                <a href="history.html" class="nav-item" data-page="history">
+                    <span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v6h6"/><path d="M3.51 9a9 9 0 1 0 2.13-5.36"/><path d="M12 7v5l3 2"/></svg></span>
+                    <span class="nav-label">History</span>
+                </a>
+
+                <a href="reports.html" class="nav-item" data-page="reports">
+                    <span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l3-4 3 3 5-7"/></svg></span>
+                    <span class="nav-label">Reports</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <button class="logout-btn" id="logoutBtn">Logout</button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="page-header">
+                <h2 class="page-title">Consultation Availability</h2>
+                <p class="page-subtitle">Set and manage your consultation time slots (FR-007)</p>
+            </div>
+
+            <!-- Validation feedback (FR6/FR7) -->
+            <div id="slotError" class="alert alert-error" style="display: none; margin-bottom: var(--space-lg);" role="alert"></div>
+
+            <div class="content-card" style="margin-bottom: var(--space-xl);">
+                <div class="card-header">
+                    <h3 class="card-title" id="slotFormTitle">Add New Availability Slot</h3>
+                </div>
+                <div class="card-body">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Day</label>
+                            <select id="newSlotDay" class="form-select">
+                                <option>Monday</option>
+                                <option>Tuesday</option>
+                                <option>Wednesday</option>
+                                <option>Thursday</option>
+                                <option>Friday</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Start Time</label>
+                            <input type="time" id="newSlotStart" class="form-input" placeholder="09:00">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">End Time</label>
+                            <input type="time" id="newSlotEnd" class="form-input" placeholder="12:00">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Max Students</label>
+                            <input type="number" id="newSlotMax" class="form-input" value="5" min="1" max="20">
+                        </div>
+                    </div>
+                    <input type="hidden" id="editingSlotId">
+                    <div style="display: flex; gap: var(--space-sm);">
+                        <button class="action-btn primary" id="slotSubmitBtn" onclick="addSlot()">+ Add Slot</button>
+                        <button class="action-btn secondary" id="slotCancelBtn" type="button" style="display: none;" onclick="cancelEditSlot()">Cancel Edit</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="availability-grid" id="availabilityGrid">
+                <!-- Filled by JS -->
+            </div>
+        </main>
+    </div>
+
+    <script src="../../js/script.js"></script>
+    <script src="../../js/faculty.js"></script>
+    <script>
+        function toggleTheme() {
+            const root = document.documentElement;
+            const isDark = root.getAttribute('data-theme') === 'dark';
+            root.setAttribute('data-theme', isDark ? 'light' : 'dark');
+            document.getElementById('themeLabel').textContent = isDark ? 'Light' : 'Dark';
+            localStorage.setItem('theme', isDark ? 'light' : 'dark');
+        }
+
+        // Load saved theme
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+                document.getElementById('themeLabel').textContent = savedTheme === 'dark' ? 'Dark' : 'Light';
+            }
+        });
+
+        function formatTime(t) {
+            if (!t) return '';
+            const [h, m] = t.split(':').map(Number);
+            const period = h >= 12 ? 'PM' : 'AM';
+            const hour = ((h + 11) % 12) + 1;
+            return `${hour}:${m.toString().padStart(2, '0')} ${period}`;
+        }
+
+        /**
+         * Convert "9:00 AM" back to "09:00" for <input type="time"> (FR7 edit).
+         */
+        function to24Hour(t) {
+            const minutes = window.facultyFunctions.timeToMinutes(t);
+            if (minutes === null || minutes === undefined) return '';
+            const hours = Math.floor(minutes / 60);
+            return String(hours).padStart(2, '0') + ':' + String(minutes % 60).padStart(2, '0');
+        }
+
+        function renderAvailability() {
+            // Only this member's own schedule is manageable (FR7)
+    const slots = window.facultyFunctions.getMyAvailability();
+            const grid = document.getElementById('availabilityGrid');
+
+            if (slots.length === 0) {
+                grid.innerHTML = `<div class="empty-state"><div class="empty-state-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/></svg></div><div class="empty-state-title">No availability set</div><div class="empty-state-text">Add your consultation slots above.</div></div>`;
+                return;
+            }
+
+            grid.innerHTML = slots.map(s => `
+                <div class="availability-card ${s.available ? '' : 'disabled'}">
+                    <div class="availability-header">
+                        <div>
+                            <div class="availability-day">${escapeHtml(s.day)}</div>
+                            <div class="availability-time">${escapeHtml(s.startTime)} — ${escapeHtml(s.endTime)}</div>
+                            <div class="availability-detail">Up to ${escapeHtml(s.maxStudents)} student(s)</div>
+                        </div>
+                        <span class="status-badge ${s.available ? 'available' : 'inactive'}">${s.available ? 'Active' : 'Disabled'}</span>
+                    </div>
+                    <div class="availability-toggle">
+                        <button class="action-btn secondary sm" onclick="editSlot(${s.id})">Edit</button>
+                        <button class="action-btn ${s.available ? 'secondary' : 'success'} sm" onclick="toggleSlot(${s.id})">${s.available ? 'Disable' : 'Enable'}</button>
+                        <button class="action-btn danger sm" onclick="removeSlot(${s.id})">Remove</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function showSlotError(message) {
+            const box = document.getElementById('slotError');
+            box.textContent = message;
+            box.style.display = 'block';
+        }
+
+        function clearSlotError() {
+            const box = document.getElementById('slotError');
+            box.textContent = '';
+            box.style.display = 'none';
+        }
+
+        function addSlot() {
+            clearSlotError();
+            const day = document.getElementById('newSlotDay').value;
+            const start = document.getElementById('newSlotStart').value;
+            const end = document.getElementById('newSlotEnd').value;
+            const max = parseInt(document.getElementById('newSlotMax').value, 10);
+            const editingId = document.getElementById('editingSlotId').value;
+
+            if (!start || !end) {
+                showSlotError('Please set both start and end times.');
+                return;
+            }
+
+            const slot = {
+                day,
+                startTime: formatTime(start),
+                endTime: formatTime(end),
+                maxStudents: isNaN(max) ? 5 : max,
+                available: true
+            };
+
+            if (editingId) {
+                const result = window.facultyFunctions.updateAvailability(parseInt(editingId, 10), slot);
+                if (result && result.ok === false) {
+                    showSlotError(result.message);
+                    return;
+                }
+                cancelEditSlot();
+                renderAvailability();
+                return;
+            }
+
+            const newId = window.facultyFunctions.addAvailabilitySlot(slot);
+
+            // FR7: addAvailabilitySlot returns { error } when validation fails
+            if (newId && newId.error) {
+                showSlotError(newId.error);
+                return;
+            }
+
+            if (newId) {
+                document.getElementById('newSlotStart').value = '';
+                document.getElementById('newSlotEnd').value = '';
+                renderAvailability();
+            }
+        }
+
+        /**
+         * Load a slot into the form so its day, time, and capacity can be changed (FR7).
+         */
+        function editSlot(id) {
+            clearSlotError();
+            const slot = window.facultyFunctions.getMyAvailability().find(s => s.id === id);
+            if (!slot) return;
+
+            document.getElementById('editingSlotId').value = slot.id;
+            document.getElementById('newSlotDay').value = slot.day;
+            document.getElementById('newSlotStart').value = to24Hour(slot.startTime);
+            document.getElementById('newSlotEnd').value = to24Hour(slot.endTime);
+            document.getElementById('newSlotMax').value = slot.maxStudents;
+            document.getElementById('slotFormTitle').textContent = 'Edit Availability Slot';
+            document.getElementById('slotSubmitBtn').textContent = 'Save Changes';
+            document.getElementById('slotCancelBtn').style.display = 'inline-flex';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function cancelEditSlot() {
+            document.getElementById('editingSlotId').value = '';
+            document.getElementById('newSlotStart').value = '';
+            document.getElementById('newSlotEnd').value = '';
+            document.getElementById('newSlotMax').value = 5;
+            document.getElementById('slotFormTitle').textContent = 'Add New Availability Slot';
+            document.getElementById('slotSubmitBtn').textContent = '+ Add Slot';
+            document.getElementById('slotCancelBtn').style.display = 'none';
+        }
+
+        function toggleSlot(id) {
+            const slot = window.facultyFunctions.getMyAvailability().find(s => s.id === id);
+            if (slot) {
+                const result = window.facultyFunctions.updateAvailability(id, { available: !slot.available });
+                if (result && result.ok === false) {
+                    showSlotError(result.message);
+                    return;
+                }
+                renderAvailability();
+            }
+        }
+
+        function removeSlot(id) {
+            if (confirm('Remove this availability slot? Students will no longer be able to book it.')) {
+                window.facultyFunctions.removeAvailabilitySlot(id);
+                if (String(document.getElementById('editingSlotId').value) === String(id)) {
+                    cancelEditSlot();
+                }
+                renderAvailability();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', renderAvailability);
+    </script>
+</body>
+</html>

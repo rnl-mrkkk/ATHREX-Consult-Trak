@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports | CONSULT-TRAK</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/dashboard.css">
+    <link rel="stylesheet" href="../../css/faculty.css">
+</head>
+<body data-role="faculty">
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-user">
+                <div class="user-info">
+                    <div class="role">Faculty Member</div>
+                    <div class="dept">Computer Science</div>
+                </div>
+                <button class="notification-bell" aria-label="Notifications">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                    <span class="badge">3</span>
+                </button>
+                <div class="theme-toggle" onclick="toggleTheme()">
+                    <span class="label" id="themeLabel">Light</span>
+                    <div class="switch"><div class="knob"></div></div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <a href="dashboard.html" class="sidebar-brand">
+                <span class="brand-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 4v16M3 10h18"/></svg></span>
+                <h1 class="brand-name">CONSULT-TRAK</h1>
+            </a>
+            <div class="sidebar-user-card">
+                <div class="sidebar-user-avatar">FM</div>
+                <div class="sidebar-user-info">
+                    <span class="sidebar-user-name">Faculty Member</span>
+                    <span class="sidebar-user-dept">Faculty</span>
+                </div>
+                <svg class="sidebar-user-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item" data-page="dashboard">
+                    <span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11 12 3l9 8"/><path d="M5 10v11h14V10"/></svg></span>
+                    <span class="nav-label">Dashboard</span>
+                </a>
+                <a href="consultation-requests.html" class="nav-item" data-page="consultation-requests">
+                    <span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg></span>
+                    <span class="nav-label">Consultation Requests</span>
+                </a>
+                <a href="availability.html" class="nav-item" data-page="availability">
+                    <span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l6 2"/></svg></span>
+                    <span class="nav-label">Availability</span>
+                </a>
+                <a href="consultation-records.html" class="nav-item" data-page="consultation-records">
+                    <span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg></span>
+                    <span class="nav-label">Consultation Records</span>
+                </a>
+                <a href="history.html" class="nav-item" data-page="history">
+                    <span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v6h6"/><path d="M3.51 9a9 9 0 1 0 2.13-5.36"/><path d="M12 7v5l3 2"/></svg></span>
+                    <span class="nav-label">History</span>
+                </a>
+
+                <a href="reports.html" class="nav-item active" data-page="reports">
+                    <span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l3-4 3 3 5-7"/></svg></span>
+                    <span class="nav-label">Reports</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <button class="logout-btn" id="logoutBtn">Logout</button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="page-header">
+                <h2 class="page-title">My Reports</h2>
+                <p class="page-subtitle">Summaries of your own consultations (FR-012)</p>
+            </div>
+
+            <div class="filter-bar">
+                <select id="periodFilter" class="form-select" onchange="onPeriodChange()">
+                    <option value="week">Last 7 Days</option>
+                    <option value="month" selected>Last 30 Days</option>
+                    <option value="semester">Last 6 Months</option>
+                    <option value="all">All Time</option>
+                    <option value="custom">Custom Range</option>
+                </select>
+                <div id="customRange" style="display: none; align-items: center; gap: var(--space-sm);">
+                    <input type="date" id="customFrom" class="form-input">
+                    <span class="form-label" style="margin: 0;">to</span>
+                    <input type="date" id="customTo" class="form-input">
+                </div>
+                <button class="action-btn primary" onclick="exportReportCSV()">Export CSV</button>
+                <button class="action-btn secondary" onclick="printReport()">Print / PDF</button>
+            </div>
+            <p class="form-hint" id="reportRangeLabel" style="margin-bottom: var(--space-lg);"></p>
+
+            <!-- Totals -->
+            <div class="stats-grid" style="margin-bottom: var(--space-xl);">
+                <div class="stat-card">
+                    <div class="stat-value" id="statTotal">0</div>
+                    <div class="stat-label">Total Consultations</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="statCompleted">0</div>
+                    <div class="stat-label">Completed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="statPending">0</div>
+                    <div class="stat-label">Pending</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="statCancelled">0</div>
+                    <div class="stat-label">Cancelled</div>
+                </div>
+            </div>
+
+            <!-- By status -->
+            <div class="chart-container">
+                <h3 class="card-title" style="margin-bottom: var(--space-lg);">My Consultations by Status</h3>
+                <div id="statusChart"></div>
+            </div>
+
+            <!-- By date -->
+            <div class="chart-container">
+                <h3 class="card-title" style="margin-bottom: var(--space-lg);">My Consultations by Date</h3>
+                <div id="dateChart"></div>
+            </div>
+
+            <!-- Detail table -->
+            <div class="content-card">
+                <div class="card-header">
+                    <h3 class="card-title">Consultation Detail</h3>
+                    <span class="stat-label" id="detailCount"></span>
+                </div>
+                <div class="card-body no-padding">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Student</th>
+                                <th>Subject</th>
+                                <th>Time</th>
+                                <th>Status</th>
+                                <th>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody id="detailBody">
+                            <!-- Filled by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../../js/script.js"></script>
+    <script src="../../js/faculty.js"></script>
+    <script>
+        function toggleTheme() {
+            const root = document.documentElement;
+            const isDark = root.getAttribute('data-theme') === 'dark';
+            root.setAttribute('data-theme', isDark ? 'light' : 'dark');
+            document.getElementById('themeLabel').textContent = isDark ? 'Light' : 'Dark';
+            localStorage.setItem('theme', isDark ? 'light' : 'dark');
+        }
+
+        // Load saved theme
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+                document.getElementById('themeLabel').textContent = savedTheme === 'dark' ? 'Dark' : 'Light';
+            }
+        });
+
+        let currentReport = null;
+
+        function currentRange() {
+            const period = document.getElementById('periodFilter').value;
+            if (period === 'custom') {
+                return {
+                    from: document.getElementById('customFrom').value,
+                    to: document.getElementById('customTo').value
+                };
+            }
+            return window.facultyFunctions.resolveDateRange(period);
+        }
+
+        function renderReport() {
+            const range = currentRange();
+            const data = window.facultyFunctions.getReportData({ from: range.from, to: range.to });
+            currentReport = data;
+
+            const rangeLabel = range.from ? range.from + ' to ' + (range.to || 'today') : 'All time';
+            document.getElementById('reportRangeLabel').textContent = rangeLabel + ' — ' + data.total + ' consultation(s)';
+
+            document.getElementById('statTotal').textContent = data.total;
+            document.getElementById('statCompleted').textContent = data.statusCounts.completed;
+            document.getElementById('statPending').textContent = data.statusCounts.pending;
+            document.getElementById('statCancelled').textContent = data.statusCounts.cancelled;
+
+            // By status
+            const statusLabels = { pending: 'Pending', scheduled: 'Scheduled', completed: 'Completed', cancelled: 'Cancelled', rejected: 'Rejected' };
+            const maxStatus = Math.max(...Object.values(data.statusCounts), 1);
+            document.getElementById('statusChart').innerHTML = Object.entries(data.statusCounts).map(([status, count]) => `
+                <div class="chart-bar">
+                    <div class="chart-label">${escapeHtml(statusLabels[status] || status)}</div>
+                    <div class="chart-track">
+                        <div class="chart-fill" style="width: ${(count / maxStatus * 100)}%"></div>
+                    </div>
+                    <div class="chart-value">${count}</div>
+                </div>
+            `).join('');
+
+            // By date
+            const dateEntries = Object.entries(data.byDate).sort();
+            const maxDate = Math.max(...dateEntries.map(e => e[1]), 1);
+            const dateChart = document.getElementById('dateChart');
+            if (dateEntries.length === 0) {
+                dateChart.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-title">No consultations in this range</div>
+                        <div class="empty-state-text">Try widening the date range.</div>
+                    </div>
+                `;
+            } else {
+                dateChart.innerHTML = dateEntries.map(([date, count]) => `
+                    <div class="chart-bar">
+                        <div class="chart-label">${escapeHtml(date)}</div>
+                        <div class="chart-track">
+                            <div class="chart-fill" style="width: ${(count / maxDate * 100)}%"></div>
+                        </div>
+                        <div class="chart-value">${count}</div>
+                    </div>
+                `).join('');
+            }
+
+            // Detail table
+            document.getElementById('detailCount').textContent = data.rows.length + ' consultation(s)';
+            const tbody = document.getElementById('detailBody');
+            if (data.rows.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="6">
+                            <div class="empty-state">
+                                <div class="empty-state-icon">${window.ctIcon('note', 40)}</div>
+                                <div class="empty-state-title">No consultations to report</div>
+                                <div class="empty-state-text">Nothing matches the selected period yet.</div>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            } else {
+                tbody.innerHTML = data.rows.map(row => `
+                    <tr>
+                        <td>${escapeHtml(row.date || '—')}</td>
+                        <td>${escapeHtml(row.student)}</td>
+                        <td>${escapeHtml(row.subject)}</td>
+                        <td>${escapeHtml(row.time || '—')}</td>
+                        <td><span class="status-badge ${escapeHtml(row.status)}">${escapeHtml(row.status.charAt(0).toUpperCase() + row.status.slice(1))}</span></td>
+                        <td>${escapeHtml(row.detail) || '—'}</td>
+                    </tr>
+                `).join('');
+            }
+        }
+
+        function onPeriodChange() {
+            const isCustom = document.getElementById('periodFilter').value === 'custom';
+            document.getElementById('customRange').style.display = isCustom ? 'flex' : 'none';
+            renderReport();
+        }
+
+        function exportReportCSV() {
+            if (!currentReport || currentReport.rows.length === 0) {
+                alert('No consultations match the current period, so there is nothing to export.');
+                return;
+            }
+            window.facultyFunctions.downloadCSV('my-consultation-report.csv', window.facultyFunctions.toCSV(currentReport));
+        }
+
+        function printReport() {
+            window.print();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!window.requireRole || !window.requireRole('faculty')) return;
+
+            renderReport();
+            document.getElementById('customFrom').addEventListener('change', renderReport);
+            document.getElementById('customTo').addEventListener('change', renderReport);
+        });
+    </script>
+</body>
+</html>

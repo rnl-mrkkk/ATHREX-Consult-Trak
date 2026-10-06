@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointments | CONSULT-TRAK</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/dashboard.css">
+    <link rel="stylesheet" href="../../css/student.css">
+</head>
+<body data-role="student">
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-user">
+                <div class="user-info">
+                    <div class="role">Jenny Panther</div>
+                    <div class="dept">Student</div>
+                </div>
+                <button class="notification-bell" aria-label="Notifications">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                    <span class="badge">3</span>
+                </button>
+                <div class="theme-toggle" onclick="toggleTheme()">
+                    <span class="label" id="themeLabel">Light</span>
+                    <div class="switch"><div class="knob"></div></div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <a href="dashboard.html" class="sidebar-brand">
+                <span class="brand-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 4v16M3 10h18"/></svg></span>
+                <h1 class="brand-name">CONSULT-TRAK</h1>
+            </a>
+            <div class="sidebar-user-card">
+                <div class="sidebar-user-avatar">JP</div>
+                <div class="sidebar-user-info">
+                    <span class="sidebar-user-name">Jenny Panther</span>
+                    <span class="sidebar-user-dept">Student</span>
+                </div>
+                <svg class="sidebar-user-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item" data-page="dashboard">
+                    <span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11 12 3l9 8"/><path d="M5 10v11h14V10"/></svg></span>
+                    <span class="nav-label">Dashboard</span>
+                </a>
+                <a href="faculty-availability.html" class="nav-item" data-page="faculty-availability">
+                    <span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/></svg></span>
+                    <span class="nav-label">Faculty Availability</span>
+                </a>
+                <a href="my-requests.html" class="nav-item" data-page="my-requests">
+                    <span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg></span>
+                    <span class="nav-label">My Requests</span>
+                </a>
+                <a href="appointments.html" class="nav-item" data-page="appointments">
+                    <span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span>
+                    <span class="nav-label">Appointments</span>
+                </a>
+                <a href="history.html" class="nav-item" data-page="history">
+                    <span class="nav-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v6h6"/><path d="M3.51 9a9 9 0 1 0 2.13-5.36"/><path d="M12 7v5l3 2"/></svg></span>
+                    <span class="nav-label">History</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <button class="logout-btn" id="logoutBtn">Logout</button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="page-header">
+                <h2 class="page-title">My Appointments</h2>
+                <p class="page-subtitle">Track the status of your requests and appointments (FR-008)</p>
+            </div>
+
+            <div class="filter-bar">
+                <label class="form-label filter-label" style="margin: 0;">Filter by Status:</label>
+                <select id="statusFilter" class="form-select" style="max-width: 240px; margin: 0;" onchange="renderAppointments()">
+                    <option value="all">All Statuses</option>
+                    <option value="pending">Pending</option>
+                    <option value="accepted">Accepted</option>
+                    <option value="scheduled">Scheduled</option>
+                    <option value="completed">Completed</option>
+                    <option value="rejected">Rejected</option>
+                    <option value="cancelled">Cancelled</option>
+                </select>
+                <span class="stat-label" id="appointmentCount"></span>
+            </div>
+
+            <div id="appointmentsList">
+                <!-- Filled by JS -->
+            </div>
+        </main>
+    </div>
+
+    <script src="../../js/script.js"></script>
+    <script src="../../js/student.js"></script>
+    <script>
+        function toggleTheme() {
+            const root = document.documentElement;
+            const isDark = root.getAttribute('data-theme') === 'dark';
+            root.setAttribute('data-theme', isDark ? 'light' : 'dark');
+            document.getElementById('themeLabel').textContent = isDark ? 'Light' : 'Dark';
+            localStorage.setItem('theme', isDark ? 'light' : 'dark');
+        }
+
+        // Load saved theme
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+                document.getElementById('themeLabel').textContent = savedTheme === 'dark' ? 'Dark' : 'Light';
+            }
+        });
+
+        function renderAppointments() {
+            const all = window.studentFunctions.getAppointments();
+            const list = document.getElementById('appointmentsList');
+            const countLabel = document.getElementById('appointmentCount');
+            const filterEl = document.getElementById('statusFilter');
+            const filter = filterEl ? filterEl.value : 'all';
+
+            // "Accepted" and "Scheduled" are the same state in this app
+            const matches = a => filter === 'all'
+                || a.status === filter
+                || (filter === 'accepted' && a.status === 'scheduled')
+                || (filter === 'scheduled' && a.status === 'accepted');
+
+            const appointments = all.filter(matches);
+
+            if (countLabel) {
+                countLabel.textContent = filter === 'all'
+                    ? `${all.length} total`
+                    : `${appointments.length} of ${all.length} (${filter})`;
+            }
+
+            if (all.length === 0) {
+                list.innerHTML = `<div class="empty-state"><div class="empty-state-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div><div class="empty-state-title">No appointments yet</div><div class="empty-state-text">Submit a consultation request to get started.</div></div>`;
+                return;
+            }
+
+            if (appointments.length === 0) {
+                list.innerHTML = `<div class="empty-state"><div class="empty-state-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></div><div class="empty-state-title">No ${escapeHtml(filter)} requests</div><div class="empty-state-text">You have no appointments with this status right now.</div></div>`;
+                return;
+            }
+
+            list.innerHTML = appointments.map(a => {
+                let statusBadgeText = a.status.charAt(0).toUpperCase() + a.status.slice(1);
+                if (a.status === 'scheduled') statusBadgeText = 'Accepted';
+
+                return `
+                <div class="appointment-card ${escapeHtml(a.status)}">
+                    <div class="appointment-header">
+                        <div class="appointment-faculty">${escapeHtml(a.faculty)}</div>
+                        <span class="status-badge ${escapeHtml(a.status)}">${escapeHtml(statusBadgeText)}</span>
+                    </div>
+                    <div class="appointment-details">
+                        <span class="meta-icon">${window.ctIcon('note', 14)} <strong>Subject:</strong> ${escapeHtml(a.subject)}</span>
+                        <span class="meta-icon">${window.ctIcon('calendar', 14)} ${escapeHtml(a.date)}</span>
+                        <span class="meta-icon">${window.ctIcon('clock', 14)} ${escapeHtml(a.time)}</span>
+                        ${a.location ? `<span class="meta-icon">${window.ctIcon('pin', 14)} ${escapeHtml(a.location)}</span>` : ''}
+                    </div>
+
+                    ${(a.status === 'scheduled' || a.status === 'accepted') && a.notes ? `
+                        <div style="margin-top: var(--space-sm); font-size: var(--font-size-xs); color: var(--color-text-secondary); background: var(--color-surface-hover); padding: 8px 12px; border-radius: var(--radius-sm);">
+                            <strong>Faculty Instructions:</strong> ${escapeHtml(a.notes)}
+                        </div>
+                    ` : ''}
+
+                    ${a.status === 'rejected' && a.rejectionReason ? `
+                        <div style="margin-top: var(--space-sm); font-size: var(--font-size-xs); color: var(--color-error); background: rgba(185, 28, 28, 0.08); padding: 8px 12px; border-radius: var(--radius-sm); border-left: 3px solid var(--color-error);">
+                            <strong>Rejection Reason:</strong> ${escapeHtml(a.rejectionReason)}
+                        </div>
+                    ` : ''}
+
+                    ${a.status === 'cancelled' && (a.cancellationReason || a.rejectionReason) ? `
+                        <div style="margin-top: var(--space-sm); font-size: var(--font-size-xs); color: var(--color-text-secondary); background: var(--color-surface-hover); padding: 8px 12px; border-radius: var(--radius-sm); border-left: 3px solid var(--color-border);">
+                            <strong>Cancellation Reason:</strong> ${escapeHtml(a.cancellationReason || a.rejectionReason)}
+                        </div>
+                    ` : ''}
+
+                    ${a.status === 'completed' && a.outcomeNotes ? `
+                        <div style="margin-top: var(--space-sm); font-size: var(--font-size-xs); color: var(--color-text-secondary); background: var(--color-surface-hover); padding: 8px 12px; border-radius: var(--radius-sm);">
+                            <strong>Outcome Notes:</strong> ${escapeHtml(a.outcomeNotes)}
+                        </div>
+                    ` : ''}
+
+                    ${['pending', 'scheduled', 'accepted'].includes(a.status) ? `
+                        <div style="margin-top: var(--space-md); display: flex; gap: var(--space-sm);">
+                            <button class="action-btn danger sm" onclick="cancelAppointment(${a.id})">Cancel Request</button>
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+            }).join('');
+        }
+
+        function cancelAppointment(id) {
+            if (confirm('Cancel this appointment?')) {
+                if (window.studentFunctions.cancelAppointment(id)) {
+                    alert('Appointment cancelled.');
+                    renderAppointments();
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', renderAppointments);
+    </script>
+</body>
+</html>

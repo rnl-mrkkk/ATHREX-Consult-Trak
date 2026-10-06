@@ -1,0 +1,13 @@
+/* ============================================================
+   CONSULT-TRAK — dashboard.css (legacy passthrough)
+   ------------------------------------------------------------------
+   Requirement 2f unified ALL shared styling into a single,
+   authoritative stylesheet: css/style.css (tokens, app shell,
+   components, responsive, dark mode, motion).
+   dashboard.css is retained purely so existing pages keep their
+   three-stylesheet <link> order without breaking. It no longer
+   re-declares any shared rule, so there is one source of truth.
+   ============================================================ */
+
+/* Role-agnostic layout utilities that are dashboard-specific only. */
+.dashboard-container { min-height: calc(100vh - var(--navbar-height)); }
