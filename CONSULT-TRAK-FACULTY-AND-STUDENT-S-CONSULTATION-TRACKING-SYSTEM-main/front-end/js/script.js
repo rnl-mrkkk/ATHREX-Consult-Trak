@@ -438,31 +438,27 @@ function handleLoginSubmit(event) {
         loginBtn.disabled = true;
     }
 
-    // Real fetch to PHP backend
-    fetch('../../back-end/auth/login.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: username, password: password })
-    })
-    .then(res => { if (!res.ok) throw new Error("HTTP " + res.status); return res.json(); })
-    .then(data => {
-        if (loginBtn) {
-            loginBtn.classList.remove('loading');
-            loginBtn.disabled = false;
-        }
-        if (data.status === 'success') {
-            sessionStorage.setItem('user', JSON.stringify(data.user));
-            window.location.href = 'html/' + data.user.role.toLowerCase() + '/dashboard.html';
-        } else {
-            showError('loginForm', data.message || 'Login failed');
-        }
-    })
-    .catch(err => {
-        if (loginBtn) { loginBtn.classList.remove('loading'); loginBtn.disabled = false; }
-        showError('loginForm', 'Network error. Ensure server is running.');
-        console.error(err);
-    });
+    const user = mockLogin(username, password);
+    resetLoginButton(loginBtn);
 
+    if (!user) {
+        showError('loginForm', 'Invalid email or password.');
+        return;
+    }
+    if (user.deactivated) {
+        showError('loginForm', 'This account is inactive. Contact an administrator.');
+        return;
+    }
+    if (!safeLocalStorageSet('userSession', JSON.stringify(user))) {
+        showError('loginForm', 'Unable to save your login. Please enable browser storage and try again.');
+        return;
+    }
+    if (rememberMe) {
+        safeLocalStorageSet('rememberedUsername', username.trim());
+    } else {
+        safeLocalStorageRemove('rememberedUsername');
+    }
+    window.location.href = getRoleDashboardHref(user.role);
 }
 
 function resetLoginButton(loginBtn) {

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CONSULT-TRAK Login</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="login-body">
     <!-- Login Container -->
@@ -27,7 +27,7 @@
                     <div class="input-wrapper">
                         <span class="input-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>
                         <input
-                            type="text"
+                            type="email"
                             id="username"
                             name="username"
                             class="form-input"
@@ -75,11 +75,12 @@
                     <span class="button-text">Login</span>
                     <span class="button-loading" hidden>Logging in...</span>
                 </button>
+                <span class="error-message" id="loginFormError" role="alert" aria-live="polite"></span>
 
             </form>
         </div>
     </div>
 
-    <script src="../js/script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
