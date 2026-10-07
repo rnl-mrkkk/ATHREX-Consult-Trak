@@ -438,22 +438,26 @@ function handleLoginSubmit(event) {
         loginBtn.disabled = true;
     }
 
-    const user = mockLogin(username, password);
-    resetLoginButton(loginBtn);
-
-    if (!user) {
-        showError('loginForm', 'Invalid email or password.');
-        return;
-    }
-    if (user.deactivated) {
-        showError('loginForm', 'This account is inactive. Contact an administrator.');
-        return;
-    }
-    if (!safeLocalStorageSet('userSession', JSON.stringify(user))) {
-        showError('loginForm', 'Unable to save your login. Please enable browser storage and try again.');
-        return;
-    }
-    if (rememberMe) {
+    // Call real back-end (XAMPP) instead of mock
+    fetch('../../back-end/auth/login.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: username, password: password })
+    })
+    .then(r => r.json())
+    .then(data => {
+        if (data.status === 'success') {
+            safeLocalStorageSet('userSession', JSON.stringify({ role: data.user.role, email: data.user.email, user_id: data.user.user_id }));
+            window.location.href = getRoleDashboardHref(data.user.role);
+        } else {
+            showError('loginForm', data.message || 'Invalid email or password.');
+        }
+        resetLoginButton(loginBtn);
+    })
+    .catch(() => {
+        showError('loginForm', 'Server unreachable. Ensure XAMPP is running.');
+        resetLoginButton(loginBtn);
+    });
         safeLocalStorageSet('rememberedUsername', username.trim());
     } else {
         safeLocalStorageRemove('rememberedUsername');
