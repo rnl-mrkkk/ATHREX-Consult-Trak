@@ -1,7 +1,7 @@
 <?php
 // Database credentials — adjust for XAMPP (default root / no password)
 $host = 'localhost';
-$dbname = 'consult-trak';
+$dbname = 'consulttrak';
 $db_user = 'root';
 $db_pass = '';
 
